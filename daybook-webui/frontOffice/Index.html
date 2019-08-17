@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html data-ng-app="daybookApp"
+      ng-controller="rootController">
+
+<head>
+    <title ng-bind="pageTitle ? (pageTitle + ' | ' + c.appName) : c.appName"></title>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
+
+    <link rel="apple-touch-icon"
+          sizes="57x57"
+          href="/shared/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon"
+          sizes="60x60"
+          href="/shared/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon"
+          sizes="72x72"
+          href="/shared/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon"
+          sizes="76x76"
+          href="/shared/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon"
+          sizes="114x114"
+          href="/shared/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon"
+          sizes="120x120"
+          href="/shared/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon"
+          sizes="144x144"
+          href="/shared/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon"
+          sizes="152x152"
+          href="/shared/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon"
+          sizes="180x180"
+          href="/shared/favicon/apple-icon-180x180.png">
+    <link rel="icon"
+          type="image/png"
+          sizes="192x192"
+          href="/shared/favicon/android-icon-192x192.png">
+    <link rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/shared/favicon/favicon-32x32.png">
+    <link rel="icon"
+          type="image/png"
+          sizes="96x96"
+          href="/shared/favicon/favicon-96x96.png">
+    <link rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/shared/favicon/favicon-16x16.png">
+    <link rel="manifest"
+          href="/shared/favicon/manifest.json">
+    <meta name="msapplication-TileColor"
+          content="#ffffff">
+    <meta name="msapplication-TileImage"
+          content="/shared/favicon/ms-icon-144x144.png">
+    <meta name="theme-color"
+          content="#ffffff">
+
+    <link href="/assets/lib.css"
+          rel="stylesheet" />
+    <link href="/assets/app.css"
+          rel="stylesheet" />
+    <script src="/assets/lib.js"></script>
+    <script src="/assets/app.js"></script>
+    <script src="/assets/template.js"></script>
+</head>
+
+<body ng-cloak
+      style="display:none">
+    <div test-directive></div>
+    <div ng-if="isLoadCommonInformation">
+        <div ng-if="isAuthenticated != null && isAuthenticated == true"
+             class="main">
+            <div class="container-fluid">
+                <div class="header">
+                    <div class="pull-left">
+                        <img src="/assets/images/logo.png"
+                             class="logo" />
+                        <h1 class="app-name">{{c.appName}} <span class="version">{{c.version}}
+                                {{getAppVersion()}}</span>
+                            <span class="app-description">{{c.appDescription}}</span>
+                        </h1>
+
+                    </div>
+                    <div class="pull-right">
+                        <div class="user">
+                            <span class="profile_name">
+                                {{profile.name}}</span>
+                            <a href="javascript:;"
+                               class="logout"
+                               ng-click="logout()">Sign out</a>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="content">
+                    <div ng-view></div>
+                </div>
+                <div class="copyright">
+                    {{c.copyright}}
+                </div>
+            </div>
+        </div>
+        <div ng-if="isAuthenticated != null && isAuthenticated == false"
+             ng-controller="loginController"
+             class="login">
+            <div class="header">
+                <div class="title">
+                    <img src="/assets/images/logo.png" />
+                    <div class="text">
+                        <div class="app-name">{{c.appName}}</div>
+                        <div class="app-owner">{{c.appOwner}}</div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="login-form">
+                    <form ng-submit="login(obj)"
+                          server-validate="errorData"
+                          autocomplete="off">
+                        <h2>{{c.signInTitle}}</h2>
+                        <div class="form-group has-feedback">
+                            <label for="user_key">{{c.userKey}}</label>
+                            <input focus-if="true"
+                                   focus-delay="500"
+                                   id="user_key"
+                                   type="text"
+                                   class="form-control"
+                                   ng-model="obj.user_key" />
+                            <i class="form-control-feedback fas fa-user"></i>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label for="password">{{c.password}}</label>
+                            <input id="password"
+                                   type="password"
+                                   class="form-control"
+                                   ng-model="obj.password" />
+                            <i class="form-control-feedback fas fa-key"></i>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-xs-6 col-xs-push-6">
+                                    <button class="btn btn-primary btn-cons btn-block"
+                                            type="submit">{{c.signIn}}</button>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="seprator"></div>
+                                    <a href="javascript:;"
+                                       ng-click="sign_up()">{{c.signUp}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                {{c.copyright}}
+            </div>
+        </div>
+    </div>
+    <div ng-if="isLoadCommonInformation == false"
+         class="common-information-loading">
+        <div class="inner">
+            <div class="cssload-thecube">
+                <div class="cssload-cube cssload-c1"></div>
+                <div class="cssload-cube cssload-c2"></div>
+                <div class="cssload-cube cssload-c4"></div>
+                <div class="cssload-cube cssload-c3"></div>
+            </div>
+            <h3 class="q-center">Loading please wait...</h3>
+        </div>
+    </div>
+    <script type="text/ng-template"
+            id="retryLoadCommonInformation">
+        <div class="modal-header">
+            <h4 class="modal-title">Error</h4>
+        </div>
+        <div class="modal-body">
+            <h4 class="q-center">Failed to load, please try again later.</h4>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success" ng-click="loadCommonInformation()">Retry</button>
+        </div>
+    </script>
+    <script type="text/ng-template"
+            id="logout">
+        <form ng-submit="ok()" server-validate="errorData" autocomplete="off">
+            <div class="modal-header">
+                <h4 class="modal-title"><i class="fas fa-power-off"></i> {{c.signOut}}</h4>
+            </div>
+            <div class="modal-body">
+                <p>{{c.logOutMessage}}</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-link" type="button" ng-click="cancel()">{{c.cancel}}</button>
+                <button class="btn btn-success" type="submit">{{c.submit}}</button>
+            </div>
+        </form>
+    </script>
+    <script type="text/ng-template"
+            id="msg">
+        <div class="modal-header">
+            <h4 class="modal-title">{{c.error}}</h4>
+        </div>
+        <div class="modal-body">
+            <p>{{$scope.message}}</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success" ng-click="close()">{{c.close}}</button>
+        </div>
+    </script>
+    <script type="text/ng-template"
+            id="signUp">
+        <form ng-submit="ok()" server-validate="errorData" autocomplete="off">
+            <div class="modal-header">
+                <h4 class="modal-title">{{c.signUp}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group has-feedback">
+                            <label for="name">{{c.name}}</label>
+                            <input id="name"
+                                    type="text"
+                                    class="form-control"
+                                    ng-model="obj.name" />
+                            <i class="form-control-feedback fas fa-signature"></i>
+                        </div>
+                        <div class="form-group has-feedback">
+                                <label for="email">{{c.email}}</label>
+                                <input id="email"
+                                        type="text"
+                                        class="form-control"
+                                        ng-model="obj.email" />
+                                <i class="form-control-feedback fas fa-envelope"></i>
+                        </div>
+                        <div class="form-group has-feedback">
+                                <label for="username">{{c.username}}</label>
+                                <input id="username"
+                                        type="text"
+                                        class="form-control"
+                                        ng-model="obj.username" />
+                                <i class="form-control-feedback fas fa-user"></i>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label for="password">{{c.password}}</label>
+                            <input id="password"
+                                    type="password"
+                                    class="form-control"
+                                    ng-model="obj.password" />
+                            <i class="form-control-feedback fas fa-key"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-link" type="button" ng-click="cancel()">{{c.cancel}}</button>
+                <button class="btn btn-success" type="submit">{{c.submit}}</button>
+            </div>
+        </form>
+    </script>
+</body>
+
+</html>

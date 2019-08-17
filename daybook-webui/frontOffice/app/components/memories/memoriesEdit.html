@@ -1,0 +1,93 @@
+﻿<div class="memories-edit">
+    <form server-validate="errorData"
+          autocomplete="off">
+        <div class="header-memories-edit">
+            <div class="left">
+                <a href="javascript:;"
+                   class="back"
+                   ng-click="back()"><i class="fas fa-chevron-left"></i>{{c.memories}}</a>
+                <span class="title">
+                    <input class="form-control"
+                           data-ng-model="obj.title"
+                           id="title"
+                           type="text" />
+                </span>
+            </div>
+            <div class="right">
+                <span>
+                    <a href="javascript:;"
+                       class="btn-save"
+                       ng-class="{'unsaved_data' : unsaved_data == true , 'saving_data' : saving_data == true}"
+                       type="submit"
+                       ng-click="save_changes(obj)">
+                        <span ng-if="saving_data == true">
+                            <i class="fa-fw fas fa-sync fa-spin"></i>
+                        </span>
+                        <span ng-if="saving_data == false">
+                            <i class="fa-fw fas fa-save"></i>
+                        </span>
+                        {{saving_data ? c.memory_saving : c.memory_save}}
+                    </a>
+                </span>
+                <div class="cleafix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="content-memories-edit">
+            <div class="loading"
+                 ng-if="loading">
+                <div class="loader">Loading...</div>
+            </div>
+            <div ng-if="fail_load">
+                <div class="q-center">
+                    <p>Loading failed. Please click on the retry button to load again.</p>
+                    <button ng-click="load()"
+                            type="button"
+                            class="btn btn-info">Retry</button>
+                </div>
+            </div>
+            <div ng-if="!loading && !fail_load">
+                <div class="row">
+                    <div class="col-lg-8 col-md-7 col-sm-6">
+                        <div class="form-group">
+                            <label for="context">{{c.context}}</label>
+                            <textarea ng-model="obj.context"
+                                      id="context"
+                                      autoheight
+                                      type="text"
+                                      rows="6"
+                                      class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-3">
+                        <div>
+                            <label for="title">{{c.feeling}}</label>
+                            <div id="feeling">
+                                <div class="radio radio-info "
+                                     ng-repeat="f in feelings">
+                                    <input type="radio"
+                                           ng-model="obj.feeling"
+                                           name="feeling_{{f.id}}"
+                                           id="feeling_{{f.id}}"
+                                           value="{{f.id}}">
+                                    <label for="feeling_{{f.id}}">
+                                        {{f.name}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3">
+                        <div class="form-group">
+                            <label for="memory_date_time">{{c.memory_date_time}}</label>
+                            <input ng-model="obj.memory_date_time"
+                                   id="memory_date_time"
+                                   type="text"
+                                   class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

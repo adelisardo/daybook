@@ -1,0 +1,45 @@
+﻿<form server-validate="errorData"
+      autocomplete="off"
+      ng-submit="create(obj)">
+    <div class="modal-header">
+        <h4 class="modal-title">
+            <span>{{c.createANew | format : c.memory}}</span>
+        </h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label for="title">{{c.title}}</label>
+                    <input ng-model="obj.title"
+                           id="title"
+                           type="text"
+                           class="form-control" />
+                </div>
+                <div>
+                    <label for="title">{{c.feeling}}</label>
+                    <div id="feeling">
+                        <div class="radio radio-info "
+                             ng-repeat="f in feelings">
+                            <input type="radio"
+                                   ng-model="obj.feeling"
+                                   name="feeling_{{f.id}}"
+                                   id="feeling_{{f.id}}"
+                                   value="{{f.id}}">
+                            <label for="feeling_{{f.id}}">
+                                {{f.name}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-link"
+                type="button"
+                ng-click="close()">{{c.close}}</button>
+        <button class="btn btn-success"
+                type="submit">{{c.create}}</button>
+    </div>
+</form>

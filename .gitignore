@@ -1,0 +1,6 @@
+daybook-api/.DS_Store
+daybook-api/vendor
+daybook-api/.env
+daybook-webui/.DS_Store
+daybook-webui/node_modules
+daybook-webui/build

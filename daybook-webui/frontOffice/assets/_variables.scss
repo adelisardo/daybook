@@ -1,0 +1,58 @@
+/*@extend #region colors */
+
+/* As hex codes */
+
+$color-primary-0: #0090D5; /* Main Primary color */
+$color-primary-1: #1EB3FB;
+$color-primary-2: #06AEFF;
+$color-primary-3: #00689A;
+$color-primary-4: #005279;
+
+$color-secondary-1-0: #001ADB; /* Main Secondary color (1) */
+$color-secondary-1-1: #3149FC;
+$color-secondary-1-2: #0F2BFF;
+$color-secondary-1-3: #0014A7;
+$color-secondary-1-4: #001084;
+
+$color-secondary-2-0: #b60000; /* Main Secondary color (2) */
+$color-secondary-2-1: #FFBD13;
+$color-secondary-2-2: #FFB800;
+$color-secondary-2-3: #F3B000;
+$color-secondary-2-4: #BF8A00;
+
+$color-complement-0: #FF8900; /* Main Complement color */
+$color-complement-1: #FF9113;
+$color-complement-2: #FF8900;
+$color-complement-3: #F38200;
+$color-complement-4: #BF6600;
+
+$color-gray-primary: #333333;
+$color-gray-secondary: #121212;
+
+/* As RGBa codes */
+
+$rgba-primary-0: rgba( 0,144,213,1); /* Main Primary color */
+$rgba-primary-1: rgba( 30,179,251,1);
+$rgba-primary-2: rgba( 6,174,255,1);
+$rgba-primary-3: rgba( 0,104,154,1);
+$rgba-primary-4: rgba( 0, 82,121,1);
+
+$rgba-secondary-1-0: rgba( 0, 26,219,1); /* Main Secondary color (1) */
+$rgba-secondary-1-1: rgba( 49, 73,252,1);
+$rgba-secondary-1-2: rgba( 15, 43,255,1);
+$rgba-secondary-1-3: rgba( 0, 20,167,1);
+$rgba-secondary-1-4: rgba( 0, 16,132,1);
+
+$rgba-secondary-2-0: rgba(255,184, 0,1); /* Main Secondary color (2) */
+$rgba-secondary-2-1: rgba(255,189, 19,1);
+$rgba-secondary-2-2: rgba(255,184, 0,1);
+$rgba-secondary-2-3: rgba(243,176, 0,1);
+$rgba-secondary-2-4: rgba(191,138, 0,1);
+
+$rgba-complement-0: rgba(255,137, 0,1); /* Main Complement color */
+$rgba-complement-1: rgba(255,145, 19,1);
+$rgba-complement-2: rgba(255,137, 0,1);
+$rgba-complement-3: rgba(243,130, 0,1);
+$rgba-complement-4: rgba(191,102, 0,1);
+
+/*#endregion */
